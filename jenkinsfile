@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/tu-usuario/tu-repo.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'echo "Compilando proyecto..."'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'echo "Ejecutando pruebas..."'
+            }
+        }
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: '**/*.log', followSymlinks: false
+            }
+        }
+    }
+}
